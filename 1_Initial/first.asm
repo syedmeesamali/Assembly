@@ -23,6 +23,7 @@ start:
     call crt_printf
     add esp, 4
 
+    push ebx
     push offset pointer
     call crt_printf
     add esp, 4
