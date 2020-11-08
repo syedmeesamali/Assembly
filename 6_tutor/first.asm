@@ -60,7 +60,7 @@ main:				;entry point for linker
 	sub eax, '0'
 	
 	;add eax and ebx
-	add eax, ebx
+	mul eax, ebx
 	add eax, '0'		;convert result to decimal
 	mov [res], eax		;more result to memory location with name res
 	

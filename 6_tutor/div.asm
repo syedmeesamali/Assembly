@@ -1,14 +1,16 @@
 section .text
-global main
-	mov ecx, 4
-main:
-	add ebx, 4
-	dec ecx
-	jnz main
+	mov cx, 0
+	mov ax, 31
+global _start
+
+_start:
+	cmp ax, 0
+	jle done
+	sub ax, 5
+	inc cx
+	jmp _start
+done:
 	mov eax, 4
-	mov ebx, 1
-	mov ecx, ebx
-	mov edx, 2
 	int 0x80
 	mov eax, 1
 	int 0x80
