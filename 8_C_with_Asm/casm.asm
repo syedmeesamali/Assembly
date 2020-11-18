@@ -1,50 +1,35 @@
-;hw4.asm
-;author : Wesam Almobaideen
-;date : 12 Nov 2020
+;Online link: https://ideone.com/x4Nu8l
 
 global _start
-
 section .data
-	message1: db ' is type1', 10
-	message1len: equ $-message1
+	message1: db ' is type1', 10	;10 is simply 0xA or carriage return (CR)
+	message1len: equ $-message1		;length for message 1
 	message2: db ' is type2', 10
 	message2len: equ $-message2
-
-
-;segment .bss
-;	msg resb 4
-
-
 section .text
-
 _start: 
 	call initial
-
 	mov ebx, eax	; keep the returne value in the  ebx as the status code 
-	mov eax, 1	; exit syscall id
-	int 0x80	; invoke the exit interrupt 
+	mov eax, 1	    ; exit syscall id
+	int 0x80	    ; invoke the exit interrupt 
 
 initial:
-	push ebp
-	mov ebp, esp
+	push ebp		;Setup the stack frame
+	mov ebp, esp	;EBP (base-pointer) now points to the TOP of stack
 
-	push 4
-	push 1
-	push 2
-	push 3
-	push 4
+	push 4			;Total no. of elements
+	push 1			;Element or number 1
+	push 2			;Element or number 2
+	push 3			;Element or number 3
+	push 4			;Element or number 4
 
-	call fun1
-	
-	mov esp, ebp
-	pop ebp
+	call fun1	
+	mov esp, ebp	;Preserve the EBP into ESP
+	pop ebp			;Free-up EBP for next function
 	ret
-
 fun1:
-
 	push ebp
 	mov ebp, esp
-
 	lea esi, [ebp+24]
 	mov ecx, [esi]
 l0:	
