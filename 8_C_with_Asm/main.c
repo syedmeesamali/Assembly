@@ -1,29 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char message1[10] = " is Even!";
+char message2[10] = " is Odd!";
+
 int main()
 {
-    char message1[10] = " is type1";
-    char message2[10] = " is type2";
     initial();
     return 0;
 }
 
 void initial()
 {
-    l0();   //Call the function: Read as L-Zero
+    int nums[4] = {1, 3, 4, 8};
+    int count = 0;
+    for (count=0; count < 4; count++)
+    {
+        if (nums[count] % 2 == 0)
+        {
+            call_even(nums[count]);
+        } else
+        {
+            call_odd(nums[count]);
+        }
+    }
 }
 
-void l0()
+void call_even(int x)
 {
-    int elementCount[4];
-    elementCount[0] = 1;
-    elementCount[1] = 2;
-    elementCount[2] = 3;
-    elementCount[3] = 4;
-    for (int i=0;i<4;i++)
-    {
-        printf("%d",elementCount[i]);
-    }
+    printf("%d %s \n", x, message1);
+}
 
+void call_odd(int x)
+{
+    printf("%d %s \n", x, message2);
 }

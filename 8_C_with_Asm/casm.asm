@@ -14,10 +14,10 @@ initial:
 	push ebp		;Setup the stack frame
 	mov ebp, esp	;EBP (base-pointer) now points to the TOP of stack
 	push 4			;Total no. of elements
-	push 1			;Element or number 1
-	push 2			;Element or number 2
-	push 3			;Element or number 3
-	push 4			;Element or number 4
+	push 2			;Element 1
+	push 4			;Element 2
+	push 6			;Element 3
+	push 7			;Element 4
 	call fun1	
 	mov esp, ebp	;Preserve the EBP into ESP
 	pop ebp			;Free-up EBP for next function
@@ -28,9 +28,9 @@ fun1:
 	lea esi, [ebp+24]		;Setup the stack frame
 	mov ecx, [esi]			;Setup the stack frame
 l0:	
-	test ecx, ecx
-	jz l_end
-	lea esi, [esi-4]
+	test ecx, ecx			;Test for EVEN or ODD
+	jz l_end				;Jump to l_end if EVEN
+	lea esi, [esi-4]		
 	lea edi, [ecx-1]
 	or dword [esi], 0x30
 	mov eax,0x4			;system call for sys_write
