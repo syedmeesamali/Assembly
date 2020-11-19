@@ -7,10 +7,9 @@ section .data
 section .text
 _start: 
 	call initial
-	mov ebx, eax	; keep the returne value in the  ebx as the status code 
+	mov ebx, eax	; keep the return value in the ebx as the status code 
 	mov eax, 1	    ; exit syscall id
 	int 0x80	    ; invoke the exit interrupt 
-
 initial:
 	push ebp		;Setup the stack frame
 	mov ebp, esp	;EBP (base-pointer) now points to the TOP of stack
@@ -58,9 +57,9 @@ l2:
 	pop ecx
 	jmp l0
 l_end:	
-	mov esp,ebp
-	pop ebp
-	ret
+	mov esp,ebp			;Preserve the EBP into ESP
+	pop ebp				;Free-up EBP for next function
+	ret					;return to caller
 fun2:
 	push ebp
 	mov ebp,esp

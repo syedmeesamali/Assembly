@@ -11,8 +11,7 @@ int main()
 
 void initial()
 {
-    //printf("%d",elementCount[2]);
-    l0();   //Read as L-Zero
+    l0();   //Call the function: Read as L-Zero
 }
 
 void l0()
