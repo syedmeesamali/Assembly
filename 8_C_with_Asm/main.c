@@ -5,20 +5,14 @@ int main()
 {
     char message1[10] = " is type1";
     char message2[10] = " is type2";
-    printf(message1);
-    printf(message2);
     initial();
-
     return 0;
 }
 
 void initial()
 {
-
     //printf("%d",elementCount[2]);
-
-    l0();
-
+    l0();   //Read as L-Zero
 }
 
 void l0()
@@ -28,9 +22,8 @@ void l0()
     elementCount[1] = 2;
     elementCount[2] = 3;
     elementCount[3] = 4;
-
-    int i = 0;
-    for (i=0;i<4;i++) {
+    for (int i=0;i<4;i++)
+    {
         printf("%d",elementCount[i]);
     }
 

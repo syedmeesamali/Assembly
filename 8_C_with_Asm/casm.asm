@@ -1,5 +1,3 @@
-;Online link: https://ideone.com/x4Nu8l
-
 global _start
 section .data
 	message1: db ' is type1', 10	;10 is simply 0xA or carriage return (CR)
@@ -16,36 +14,31 @@ _start:
 initial:
 	push ebp		;Setup the stack frame
 	mov ebp, esp	;EBP (base-pointer) now points to the TOP of stack
-
 	push 4			;Total no. of elements
 	push 1			;Element or number 1
 	push 2			;Element or number 2
 	push 3			;Element or number 3
 	push 4			;Element or number 4
-
 	call fun1	
 	mov esp, ebp	;Preserve the EBP into ESP
 	pop ebp			;Free-up EBP for next function
 	ret
 fun1:
-	push ebp
-	mov ebp, esp
-	lea esi, [ebp+24]
-	mov ecx, [esi]
+	push ebp		        ;Setup the stack frame
+	mov ebp, esp			;Setup the stack frame
+	lea esi, [ebp+24]		;Setup the stack frame
+	mov ecx, [esi]			;Setup the stack frame
 l0:	
 	test ecx, ecx
 	jz l_end
-
 	lea esi, [esi-4]
 	lea edi, [ecx-1]
 	or dword [esi], 0x30
-
-	mov eax,0x4
- 	mov ebx,0x1
-	mov ecx, esi
-	mov edx,0x4
-	int 0x80
-
+	mov eax,0x4			;system call for sys_write
+ 	mov ebx,0x1			;file descriptor - stdout
+	mov ecx, esi		;message location to write the message
+	mov edx,0x4			;length of output - i.e. 4 bytes
+	int 0x80			;call kernel
 	mov ecx,edi
 	mov eax, [esi]
 	test eax,0x1
@@ -71,11 +64,9 @@ l_end:
 fun2:
 	push ebp
 	mov ebp,esp
-
 	mov ebx, [ebp+8]
 	cmp ebx, 1
 	jne l3
-
 	mov eax,0x4
 	mov ebx,0x1
 	mov ecx, message1
