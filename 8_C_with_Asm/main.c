@@ -10,20 +10,26 @@ int main()
     return 0;
 }
 
+int count = 0;
 void initial()
 {
     int nums[4] = {1, 3, 4, 8};
-    int count = 0;
+    evenOrOdd(nums);
+}
+
+//Actual function to check for even or odd for an integer within an array
+int evenOrOdd(int matrix[])
+{
     for (count=0; count < 4; count++)
     {
-        if (nums[count] % 2 == 0)
+        if (matrix[count] % 2 == 0)
         {
-            call_even(nums[count]);
+            call_even(matrix[count]);
         } else
         {
-            call_odd(nums[count]);
+            call_odd(matrix[count]);
         }
-    }
+    } //End of for
 }
 
 void call_even(int x)
